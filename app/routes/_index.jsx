@@ -1,3 +1,5 @@
+import { Link } from "@remix-run/react";
+
 export const meta = () => {
 	return [
 		{ title: "New Remix App" },
@@ -9,6 +11,19 @@ export default function Index() {
 	return (
 		<div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
 			<h1>My Remix App</h1>
+			<ul>
+				<li>
+					<Link to={'/about'}>
+						Ir a about
+					</Link>
+				</li>
+				<li>
+					<Link to={'/posts'}>
+						Crear un Post
+					</Link>
+				</li>
+			</ul>
+
 		</div>
 	);
 }

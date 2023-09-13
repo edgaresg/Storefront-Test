@@ -7,6 +7,7 @@ import {
 	Outlet,
 	Scripts,
 	ScrollRestoration,
+	Link
 } from '@remix-run/react';
 
 export const links = () => [
@@ -19,7 +20,9 @@ function Layout() {
 	return (
 		<>
 			<header>
-				<h1>Remix Test</h1>
+				<Link to='/'>
+					<h1>Remix Test</h1>
+				</Link>
 			</header>
 			<Outlet />
 			<footer>
