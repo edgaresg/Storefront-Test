@@ -1,4 +1,5 @@
 import { Link, useLoaderData } from '@remix-run/react';
+import { db } from '../services/db';
 
 export const meta = () => {
 	return [
@@ -7,30 +8,17 @@ export const meta = () => {
 	];
 };
 
-export const loader = () => {
-	const data = {
-		posts: [
-			{
-				id: 1,
-				title: 'Post 1',
-				content: 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit'
-			},
-			{
-				id: 2,
-				title: 'Post 2',
-				content: 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.'
-			},
-		]
-	}
+export const loader = async () => {
+	const posts = await db.post.findMany()
 
-	return data
+	return { posts }
 }
 
 export default function Index() {
 	const { posts } = useLoaderData()
-	
+
 	return (
-		<div style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.8' }}>
+		<div>
 			<h1>My Remix App</h1>
 			<nav>
 				<ul>
@@ -46,10 +34,13 @@ export default function Index() {
 					</li>
 				</ul>
 			</nav>
-			{posts.map(post => (
+			<Link to={'/posts'}>
+				<h2>Lista de Posts</h2>
+			</Link>
+			{posts.slice(0, 1).map(post => (
 				<div key={post.id}>
 					<h2>{post.title}</h2>
-					<p>{post.content}</p>
+					<p>{post.body}</p>
 				</div>
 			))}
 		</div>
