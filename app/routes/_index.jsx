@@ -18,7 +18,7 @@ export default function Index() {
 					</Link>
 				</li>
 				<li>
-					<Link to={'/posts'}>
+					<Link to={'/posts/create'}>
 						Crear un Post
 					</Link>
 				</li>
