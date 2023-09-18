@@ -1,3 +1,13 @@
+import { redirect } from "@remix-run/node"
+
+export const action = async ({ request }) => {
+    const form = await request.formData()
+    const title = form.get('title')
+    const body = form.get('body')
+
+    return redirect('/')
+}
+
 export default function CreatePost() {
     return (
         <>
@@ -8,8 +18,8 @@ export default function CreatePost() {
                     <input id='title' type='text' name='title' />
                 </div>
                 <div>
-                    <label htmlFor='content'>Content </label> <br />
-                    <textarea id='content' type='text' name='content' />
+                    <label htmlFor='content'>Body </label> <br />
+                    <textarea id='body' type='text' name='body' />
                 </div>
 
                 <button type='submit'>Add new Post</button>
