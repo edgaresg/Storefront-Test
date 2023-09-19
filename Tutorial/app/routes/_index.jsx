@@ -18,7 +18,7 @@ export default function Index() {
 	const { posts } = useLoaderData()
 
 	return (
-		<div>
+		<div className=' bg-black'>
 			<h1>My Remix App</h1>
 			<nav>
 				<ul>
@@ -37,9 +37,22 @@ export default function Index() {
 			<Link to={'/posts'}>
 				<h2>Lista de Posts</h2>
 			</Link>
-			{posts.slice(0, 1).map(post => (
-				<div key={post.id}>
-					<h2>{post.title}</h2>
+			{posts.map(post => (
+				<div key={post.id} className='post'>
+					<div style={{display: "flex"}}>
+						<h2 style={{fontSize: "28px"}}>{post.title}</h2>
+						<span style={{
+							display: "flex", 
+							justifyContent: "center", 
+							alignItems: "center", 
+							marginLeft: "auto",
+							backgroundColor: "black",
+							color: "white",
+							width: 30,
+							height: 30
+							}}
+						>x</span>
+					</div>
 					<p>{post.body}</p>
 				</div>
 			))}

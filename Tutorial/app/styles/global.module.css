@@ -2,10 +2,6 @@ body {
     margin: 0;
     padding: 0;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    display: grid;
-    place-content: center;
-    width: 100%;
-    height: 100vh;
 }
 
 a {
@@ -19,4 +15,10 @@ footer {
 
 footer small {
     font-size: 10px;
+}
+
+.post {
+    -webkit-box-shadow: 1px 6px 21px -3px rgba(0, 0, 0, 0.57);
+    -moz-box-shadow: 1px 6px 21px -3px rgba(0, 0, 0, 0.57);
+    box-shadow: 1px 6px 21px -3px rgba(0, 0, 0, 0.57);
 }

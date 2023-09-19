@@ -11,7 +11,7 @@ export default function Index() {
     const { posts } = useLoaderData()
 
     return (
-        <div>
+        <section>
             <h2>Lista de Posts</h2>
             {posts.map(post => (
                 <div key={post.id}>
@@ -19,6 +19,6 @@ export default function Index() {
                     <p>{post.body}</p>
                 </div>
             ))}
-        </div>
+        </section>
     )
 }
