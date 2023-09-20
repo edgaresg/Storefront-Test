@@ -1,5 +1,3 @@
-import { cssBundleHref } from '@remix-run/css-bundle';
-
 import {
 	Links,
 	LiveReload,
@@ -10,26 +8,46 @@ import {
 	Link
 } from '@remix-run/react';
 import stylesheet from "./styles/tailwind.css"
+import globalcss from "./styles/global.module.css"
 
 export const links = () => [
 	{ rel: 'stylesheet', href: stylesheet }
 ];
 
-import styles from './styles/global.module.css';
-
 function Layout() {
 	return (
-		<main className='max-w-3xl mx-auto'>
-			<header>
-				<Link to='/'>
-					<h1>Remix Test</h1>
+		<div className='max-w-5xl mx-auto'>
+			<header className='flex p-4'>
+				<Link to={"/"}>
+					<h1 className='text-2xl cursor-pointer'>My Remix App</h1>
 				</Link>
+				<nav className='ml-auto'>
+					<ul className='flex gap-5 items-center'>
+						<li>
+							<Link to={'/posts'}>
+								Lista de Posts
+							</Link>
+						</li>
+						<li>
+							<Link to={'/about'}>
+								Ir a about
+							</Link>
+						</li>
+						<li>
+							<Link to={'/posts/create'}>
+								Crear un Post
+							</Link>
+						</li>
+					</ul>
+				</nav>
 			</header>
-			<Outlet />
+			<main className=' mx-4 my-10'>
+				<Outlet />
+			</main>
 			<footer>
 				Copyright 2023
 			</footer>
-		</main>
+		</div>
 	)
 }
 
@@ -43,7 +61,7 @@ export default function App() {
 				<Meta />
 				<Links />
 			</head>
-			<body>
+			<body className='bg-slate-100'>
 				<Layout />
 				<ScrollRestoration />
 				<Scripts />

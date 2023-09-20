@@ -1,5 +1,6 @@
 import { useLoaderData } from "@remix-run/react"
 import { db } from "../services/db"
+import Post from "../components/global/post/Post"
 
 export const loader = async () => {
     const posts = await db.post.findMany()
@@ -11,13 +12,9 @@ export default function Index() {
     const { posts } = useLoaderData()
 
     return (
-        <section>
-            <h2>Lista de Posts</h2>
-            {posts.map(post => (
-                <div key={post.id}>
-                    <h2>{post.title}</h2>
-                    <p>{post.body}</p>
-                </div>
+        <section className='flex flex-col gap-10'>
+            {posts.map((post, index) => (
+                <Post key={index} post={post} />
             ))}
         </section>
     )

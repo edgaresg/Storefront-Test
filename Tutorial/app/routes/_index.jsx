@@ -1,5 +1,6 @@
-import { Link, useLoaderData } from '@remix-run/react';
+import { useLoaderData } from '@remix-run/react';
 import { db } from '../services/db';
+import Post from '../components/global/post/Post';
 
 export const meta = () => {
 	return [
@@ -10,7 +11,6 @@ export const meta = () => {
 
 export const loader = async () => {
 	const posts = await db.post.findMany()
-
 	return { posts }
 }
 
@@ -18,44 +18,11 @@ export default function Index() {
 	const { posts } = useLoaderData()
 
 	return (
-		<div className=' bg-black'>
-			<h1>My Remix App</h1>
-			<nav>
-				<ul>
-					<li>
-						<Link to={'/about'}>
-							Ir a about
-						</Link>
-					</li>
-					<li>
-						<Link to={'/posts/create'}>
-							Crear un Post
-						</Link>
-					</li>
-				</ul>
-			</nav>
-			<Link to={'/posts'}>
-				<h2>Lista de Posts</h2>
-			</Link>
-			{posts.map(post => (
-				<div key={post.id} className='post'>
-					<div style={{display: "flex"}}>
-						<h2 style={{fontSize: "28px"}}>{post.title}</h2>
-						<span style={{
-							display: "flex", 
-							justifyContent: "center", 
-							alignItems: "center", 
-							marginLeft: "auto",
-							backgroundColor: "black",
-							color: "white",
-							width: 30,
-							height: 30
-							}}
-						>x</span>
-					</div>
-					<p>{post.body}</p>
-				</div>
-			))}
+		<div>
+			<h2 className=' text-4xl'>Home</h2>
+			<section className='flex flex-col gap-10 mt-10'>
+				{posts.map((post, index) => (<Post key={index} post={post} />))}
+			</section>
 		</div>
 	);
 }

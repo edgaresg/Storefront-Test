@@ -1,4 +1,7 @@
+import { redirect } from "@remix-run/node"
+import { db } from "../services/db"
 
 export const action = async ({params}) => {
-    console.log(params.postId);
-}
+    await db.post.delete({where: {id: parseInt(params.postId)}})
+    return redirect("/")
+} 
